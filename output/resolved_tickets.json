@@ -1,0 +1,86 @@
+{
+  "run_summary": {
+    "database": "data/campus_customs_new.db (reset from data/campus_customs.db at 2026-10-14T23:01:51Z before the runs)",
+    "starting_checking_balance": 3400.0,
+    "ending_checking_balance": 152.0,
+    "ending_balance_matches_cash_accounts": true,
+    "payments_table": [
+      {"id": 1, "kind": "invoice", "ref_id": 501, "amount": 840.0, "approved_by": "human at the Table"},
+      {"id": 2, "kind": "purchase", "ref_id": null, "amount": 8.0, "approved_by": "human at the Table"},
+      {"id": 3, "kind": "rent", "ref_id": 1, "amount": 2400.0, "approved_by": "human at the Table"}
+    ],
+    "audit_trail": "output/audit_trail.json (the real runs were appended; the file was never wiped)",
+    "notes": [
+      "All three tickets show 'resolved' in the working database and on the board.",
+      "Every payment was made by the backend's approve route after a human pressed Approve on the board; the agents only prepared them.",
+      "A run file from before the reset (run 589cdb5e, ticket 101, two entries, no end) is also in the audit trail; it did not finish and changed nothing.",
+      "For about half a minute during the 101 run the backend answered 500 'file is not a database' for some reads (while the database file was being touched). It cleared on its own and no data was lost.",
+      "The backend was restarted once (to add the Deny button), which cleared its in-memory approvals; the database was not touched."
+    ]
+  },
+  "tickets": [
+    {
+      "id": 101,
+      "type": "customer_order",
+      "requester": "Tauhid Zaman",
+      "final_status": "resolved",
+      "outcome": "Size S Bulldog tee has 0 in stock. Overdue invoice 501 ($840, Bulldog Print Co) was paid and a 1-unit reprint order ($8) was placed, both after human approval. Tauhid was sent a draft reply saying the tee is unavailable.",
+      "cash_change": {"before": 3400.0, "after": 2552.0, "net": -848.0, "items": ["invoice 501: -$840.00 (payment 1)", "tee order, 1 x CC-TEE-WHITE at unit cost $8.00: -$8.00 (payment 2)"]},
+      "runs": ["63dd6d4f", "7951661b"],
+      "agent_contributions": {
+        "Boss": "Read the ticket, asked Ina for stock and Ama about invoice 501, asked the human twice (pay invoice 501, then buy 1 tee), and had Jervis draft the reply.",
+        "Inventory Ina": "Checked stock for CC-TEE-WHITE size S (0 on hand, short by 1), found Bulldog Print Co (apparel reprint, 5-day lead time), and asked Ama whether the vendor had an open invoice.",
+        "Accounting Ama": "Looked up invoice 501 and the vendor's invoices, the tee's price and the cash balance; reported 501 open and overdue in run 1 and paid in run 2. He made no payment himself.",
+        "Facilities Father": "Not called.",
+        "Customer Service Jervis": "Drafted the customer message in both runs (written before the 'keep it short' fix to his prompt)."
+      },
+      "human_approvals": [
+        {"request": "Pay invoice 501, $840.00, Bulldog Print Co", "decision": "approved", "result": "paid; balance 2560.00"},
+        {"request": "Purchase 1 CC-TEE-WHITE size S from vendor 1", "decision": "approved", "result": "paid $8.00; balance 2552.00"}
+      ],
+      "compared_to_plan": "Matched the plan: Ina first, Ina asked Ama, two separate human approvals, Jervis drafted the reply, Father not called. One difference: the Boss's own final text says the order was 'left unplaced while approval is pending', but the human approved it right afterward and the $8 was paid, so that sentence was out of date."
+    },
+    {
+      "id": 102,
+      "type": "rent_notice",
+      "requester": "Elm City Properties",
+      "final_status": "resolved",
+      "outcome": "Rent for lease 1 ($2,400, due 2026-09-02) was paid after human approval. A second run confirmed it was paid and the ticket resolved.",
+      "cash_change": {"before": 2552.0, "after": 152.0, "net": -2400.0, "items": ["rent, lease 1: -$2,400.00 (payment 3)"]},
+      "runs": ["a02c51ba", "702f7b8a"],
+      "agent_contributions": {
+        "Boss": "Read the ticket, asked Father for the lease and Ama for cash, asked the human to approve the rent, and asked Jervis for a note to the landlord.",
+        "Inventory Ina": "Not called.",
+        "Accounting Ama": "Checked the cash balance, the lease and today's date. He made no payment himself.",
+        "Facilities Father": "Read the lease ($2,400 due 2026-09-02, 2 days left), checked past payments, and asked Ama to prepare the payment in run 1.",
+        "Customer Service Jervis": "Drafted a note to the landlord in both runs (run 2 ends with a '[Name]' placeholder)."
+      },
+      "human_approvals": [
+        {"request": "Pay rent $2,400.00 to Elm City Properties (lease 1)", "decision": "approved", "result": "paid; balance 152.00"}
+      ],
+      "compared_to_plan": "Father first and Father to Ama to the human matched the plan. Different from the plan: the Boss also called Jervis, who drafted a message to the landlord even though the plan said no customer message was needed."
+    },
+    {
+      "id": 103,
+      "type": "price_override",
+      "requester": "Yale AI Club",
+      "final_status": "resolved",
+      "outcome": "We can supply the 8 hoodies in stock at the $58 list price; no bulk discount was approved. The Boss asked to restock the other 12 ($264). The first request was approved but refused by the pay tool (only $152 in cash); a later identical request was denied. No money was spent.",
+      "cash_change": {"before": 152.0, "after": 152.0, "net": 0.0, "items": ["no payment made", "restock of 12 hoodies ($264.00) approved once but refused for lack of cash, then denied"]},
+      "runs": ["45e610c0", "e12ea42b", "61dbbc13", "11aa010e"],
+      "agent_contributions": {
+        "Boss": "Read the ticket, asked Ama for margins and Ina for stock, asked the human about a $264 restock (three times), and had Jervis draft the reply.",
+        "Inventory Ina": "Checked CC-HOOD-NAVY size M (8 on hand, short by 12), found Bulldog Print Co, and asked Ama whether the vendor had an open invoice (none by then).",
+        "Accounting Ama": "Looked up the hoodie's prices (list $58, unit cost $22) and the vendor's invoices.",
+        "Facilities Father": "Not called.",
+        "Customer Service Jervis": "Drafted the reply to Yale AI Club."
+      },
+      "human_approvals": [
+        {"request": "Purchase 12 CC-HOOD-NAVY size M, $264.00", "decision": "approved", "result": "refused by the pay tool: not enough cash (balance 152.00, payment 264.00); balance unchanged"},
+        {"request": "Same purchase, asked again in the next run", "decision": "left unanswered; lost when the backend was restarted"},
+        {"request": "Same purchase, asked again", "decision": "denied", "result": "no payment; the denial is remembered so the Boss stopped asking"}
+      ],
+      "compared_to_plan": "Ama first and Ina second matched the plan. Different from the plan: the Boss proposed a restock and went to the human, which the baseline plan said would not happen. The restock could not be afforded (cash $152 vs $264). It only resolved after a Deny button was added and used."
+    }
+  ]
+}

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs Desk: Ticket Plans</title>
+<style>
+  :root { --bg:#0b0b0d; --panel:#16161a; --line:#2a2a31; --pink:#ff3fa4; --pink-soft:#ff8fcb; --text:#f4f1f3; --muted:#a39aa1; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  header { padding:22px 28px 0; }
+  h1 { margin:0; font-size:22px; letter-spacing:.3px; }
+  h1 span { color:var(--pink); }
+  .sub { color:var(--muted); margin:4px 0 0; font-size:13px; }
+  nav { display:flex; gap:6px; padding:16px 28px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  nav button { background:transparent; color:var(--muted); border:1px solid var(--line); border-bottom:none; border-radius:10px 10px 0 0; padding:9px 18px; font:inherit; cursor:pointer; }
+  nav button:hover { color:var(--text); }
+  nav button.active { background:var(--panel); color:var(--pink); border-color:var(--pink); }
+  main { padding:24px 28px 60px; max-width:1050px; }
+  section.tab { display:none; }
+  section.tab.active { display:block; }
+  h2 { margin:0 0 4px; font-size:19px; }
+  h3 { margin:26px 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:1.3px; color:var(--pink); }
+  .tag { display:inline-block; font-size:12px; color:var(--pink-soft); border:1px solid var(--pink); border-radius:20px; padding:1px 10px; margin:0 6px 6px 0; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0; }
+  .card.pink { border-color:var(--pink); }
+  .facts { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:8px 24px; margin:0; }
+  .facts div b { display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:600; }
+  table { width:100%; border-collapse:collapse; margin:8px 0; }
+  th, td { text-align:left; vertical-align:top; padding:9px 10px; border-bottom:1px solid var(--line); }
+  th { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+  td.step { color:var(--pink); font-weight:700; width:34px; }
+  code { background:#241a21; color:var(--pink-soft); padding:1px 6px; border-radius:5px; font-size:13px; }
+  .cond { color:var(--pink-soft); font-size:12px; }
+  ul { margin:6px 0 6px 20px; padding:0; }
+  li { margin:4px 0; }
+  .not { color:var(--muted); }
+  .actual { border:1px dashed var(--pink); border-radius:12px; padding:14px 18px; background:#120d11; }
+  .actual p { margin:0 0 8px; color:var(--muted); font-size:13px; }
+  textarea { width:100%; min-height:130px; background:var(--bg); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:10px; font:inherit; resize:vertical; }
+  textarea:focus { outline:none; border-color:var(--pink); }
+  .answer { background:#201424; color:var(--text); border-left:5px solid var(--pink); border-radius:8px; padding:12px 16px; margin:8px 0; }
+  .answer ol { margin:4px 0 4px 20px; }
+  .evidence { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 16px; margin:6px 0 14px; font-size:14px; }
+  .evidence b:first-child { color:var(--pink-soft); text-transform:uppercase; letter-spacing:1px; font-size:11px; }
+  .later { text-align:center; color:var(--muted); padding:70px 0; border:1px dashed var(--line); border-radius:12px; }
+  .later b { color:var(--pink); display:block; font-size:18px; margin-bottom:6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Campus Customs <span>Desk</span>: Ticket Plans</h1>
+  <p class="sub">Shop "today" = 2026-08-31 (desk.date_today). Expected plans written before the agents run; Actual sections are for you to fill in afterward.</p>
+</header>
+
+<nav id="tabs">
+  <button data-tab="t101" class="active">Ticket 101</button>
+  <button data-tab="t102">Ticket 102</button>
+  <button data-tab="t103">Ticket 103</button>
+  <button data-tab="cash">Cash</button>
+  <button data-tab="reflection">Reflection</button>
+</nav>
+
+<main>
+
+<!-- ============ 101 ============ -->
+<section class="tab active" id="t101">
+  <h2>Ticket 101: Bulldog tee, size S</h2>
+  <span class="tag">customer_order</span><span class="tag">open</span><span class="tag">created 2026-08-31 09:15</span>
+
+  <div class="card"><div class="facts">
+    <div><b>Requester</b>Tauhid Zaman</div>
+    <div><b>Item</b>CC-TEE-WHITE (Classic Bulldog Tee), size S, qty 1</div>
+    <div><b>Stock, size S</b>0 (Aisle B)</div>
+    <div><b>Linked invoice</b>501: $840, open, due 2026-08-28 (already overdue)</div>
+    <div><b>Vendor</b>Bulldog Print Co (vendor 1), apparel reprint, lead 5 days</div>
+    <div><b>Tee cost / list</b>$8.00 / $28.00</div>
+  </div></div>
+
+  <h3>Expected</h3>
+
+  <div class="card pink">
+    <b>Boss calls Inventory Ina first.</b> This is a stock question: the ticket needs a tee in S, and only Ina can say whether S is in stock. Everything else depends on her answer. Father is not needed (no lease involved).
+  </div>
+
+  <h3>Expected delegations</h3>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>Why</th></tr>
+    <tr><td class="step">1</td><td>Boss → Ina</td><td>Check stock for CC-TEE-WHITE size S. Expected answer: 0 on hand, short by 1. Ina also finds the apparel reprint vendor (Bulldog Print Co, 5-day lead).</td></tr>
+    <tr><td class="step">2</td><td>Ina → Ama</td><td>Ina needs to know whether Bulldog Print Co has an open unpaid invoice (they won't ship while one is open). Expected answer: yes, invoice 501, $840, overdue.</td></tr>
+    <tr><td class="step">3</td><td>Boss → Human (Table)</td><td>Paying invoice 501 ($840) is money going out, so the human must approve first. Ask: pay invoice 501.</td></tr>
+    <tr><td class="step">4</td><td>Boss → Ama</td><td>Only if approved: pay invoice 501 so the vendor will ship again. Cash would go from $3,400 to $2,560.</td></tr>
+    <tr><td class="step">5</td><td>Boss → Human (Table)</td><td>The reprint order itself (1 tee × $8 unit cost) is a second purchase, so it needs its own approval.</td></tr>
+    <tr><td class="step">6</td><td>Boss → Ama</td><td>Only if approved: place the order for 1 tee, size S, vendor 1. Ina proposed it; Ama makes the payment.</td></tr>
+    <tr><td class="step">7</td><td>Boss → Jervis</td><td>Tauhid needs a reply. Jervis drafts an honest message: no size S in stock now, a reprint is being arranged, vendor lead time is 5 days, no promised delivery date.</td></tr>
+  </table>
+  <p class="not"><b>Not expected:</b> Father (nothing to do with rent or the lease). If the human denies a payment, steps 4 to 6 stop, Ama pays nothing, and Jervis drafts a message that makes no delivery promise.</p>
+
+  <h3>Expected MCP tools</h3>
+  <ul>
+    <li><code>get_ticket</code> (Ina): read ticket 101 for the SKU, size and quantity.</li>
+    <li><code>get_stock</code> (Ina): stock for CC-TEE-WHITE size S.</li>
+    <li><code>list_vendors</code> (Ina): find the apparel reprint vendor and its lead days.</li>
+    <li><code>get_vendor_invoices</code> and/or <code>get_invoice</code> (Ama): is invoice 501 open and what is it for.</li>
+    <li><code>get_today</code> (Ama): needed to say invoice 501 is overdue (due 2026-08-28 vs. today 2026-08-31).</li>
+    <li><code>get_cash</code> and <code>get_pricing</code> (Ama): can $840 + $8 be covered; unit cost of the tee is $8.</li>
+    <li><code>record_approval</code> (through the Boss's <code>ask_human</code>), twice: once for the invoice, once for the order.</li>
+    <li><code>pay_invoice</code> (invoice 501), then <code>order_stock</code> (CC-TEE-WHITE, S, qty 1, vendor 1): only after approval.</li>
+  </ul>
+
+  <h3>Actual</h3>
+  <div class="actual actual-filled">
+  <p><b>Real run, 2026-10-14.</b> Two runs of the Boss (<code>63dd6d4f</code>, <code>7951661b</code>). Ticket 101 resolved. Starting cash $3,400.00.</p>
+  <p><b>Who the Boss called first:</b> Inventory Ina (then Ama, a moment later). As planned.</p>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>What really happened</th></tr>
+    <tr><td class="step">1</td><td>Boss → Ina</td><td>Stock for CC-TEE-WHITE size S: 0 on hand, short by 1; vendor Bulldog Print Co, 5-day lead. As expected.</td></tr>
+    <tr><td class="step">2</td><td>Boss → Ama</td><td><b>Not in the plan.</b> The Boss also asked Ama directly whether invoice 501 was paid, in parallel with Ina.</td></tr>
+    <tr><td class="step">3</td><td>Ina → Ama</td><td>Does Bulldog Print Co have an open invoice? Run 1: yes, invoice 501 ($840, overdue). Run 2: no, 501 is paid. As expected.</td></tr>
+    <tr><td class="step">4</td><td>Boss → Human</td><td>Run 1: pay invoice 501 ($840.00). The request waited on the board; the human approved; payment 1 was made. Cash $3,400.00 → $2,560.00.</td></tr>
+    <tr><td class="step">5</td><td>Boss → Human</td><td>Run 2: buy 1 CC-TEE-WHITE size S (vendor 1). Human approved; payment 2 ($8.00, unit cost) was made. Cash → $2,552.00.</td></tr>
+    <tr><td class="step">6</td><td>Boss → Jervis</td><td>Drafted the reply to Tauhid in both runs (this was before Jervis's prompt was shortened).</td></tr>
+  </table>
+  <p><b>Not called:</b> Father, as planned. <b>Differences:</b> the Boss → Ama call (step 2); Ama did <i>not</i> call the pay tools. The backend's approve route called <code>record_approval</code>, <code>pay_invoice</code> and <code>order_stock</code> after the human pressed Approve (agents only prepare). The Boss's final text said the order was "left unplaced while approval is pending", but the human approved it right afterward and the $8 was paid, so that sentence was out of date. No payment was refused or denied.</p>
+  <p><b>MCP tools really used:</b> <code>get_ticket</code> (Boss, Ina), <code>get_stock</code>, <code>list_vendors</code> (Ina), <code>get_invoice</code>, <code>get_vendor_invoices</code>, <code>get_pricing</code>, <code>get_cash</code> (Ama), <code>get_today</code> (Ama, run 1), then through the approve route <code>record_approval</code>, <code>pay_invoice</code>, <code>order_stock</code>.</p>
+  <p class="muted" style="margin-top:14px">Your own notes:</p>
+  <textarea data-save="actual-101" placeholder="Anything else you noticed..."></textarea></div>
+</section>
+
+<!-- ============ 102 ============ -->
+<section class="tab" id="t102">
+  <h2>Ticket 102: Rent due</h2>
+  <span class="tag">rent_notice</span><span class="tag">open</span><span class="tag">created 2026-08-31 11:05</span>
+
+  <div class="card"><div class="facts">
+    <div><b>Requester</b>Elm City Properties</div>
+    <div><b>Ticket note</b>"Email: shop rent due in 2 days."</div>
+    <div><b>Lease 1</b>Chapel Street shop, $2,400.00 / month</div>
+    <div><b>Next due</b>2026-09-02 (today 2026-08-31, so 2 days left)</div>
+    <div><b>Checking balance</b>$3,400.00</div>
+    <div><b>Payments on record</b>none</div>
+  </div></div>
+
+  <h3>Expected</h3>
+
+  <div class="card pink">
+    <b>Boss calls Facilities Father first.</b> A rent notice is a lease question: Father owns the lease amount, due date and days left. Ina is not needed (no stock), and Ama comes in through Father only for cash and payment prep.
+  </div>
+
+  <h3>Expected delegations</h3>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>Why</th></tr>
+    <tr><td class="step">1</td><td>Boss → Father</td><td>Get the lease behind the notice: $2,400 due 2026-09-02, 2 days left, nothing paid yet.</td></tr>
+    <tr><td class="step">2</td><td>Father → Ama</td><td>Father cannot read cash. He asks Ama to prepare the rent payment and check the money. Expected answer: $3,400 covers $2,400, leaving $1,000.</td></tr>
+    <tr><td class="step">3</td><td>Boss → Human (Table)</td><td>Rent is a payment, so the human must approve it first (kind: rent, lease 1).</td></tr>
+    <tr><td class="step">4</td><td>Boss → Ama</td><td>Only if approved: pay the rent. Expected result: balance $1,000.00 and one payment recorded.</td></tr>
+  </table>
+  <p class="not"><b>Not expected:</b> Ina (no stock involved) and Jervis (the requester is the landlord, Elm City Properties, not a customer, so there is no customer message). The chain is just Father → Ama → human → Ama pays rent. If the human denies, Ama pays nothing.</p>
+
+  <h3>Expected MCP tools</h3>
+  <ul>
+    <li><code>get_ticket</code> (Father): read ticket 102 and its lease id.</li>
+    <li><code>get_lease</code> (Father): amount and next due date for lease 1.</li>
+    <li><code>get_today</code> (Father): count the days left.</li>
+    <li><code>list_payments</code> (Father and/or Ama): confirm rent has not been paid yet.</li>
+    <li><code>get_cash</code> (Ama): the checking balance.</li>
+    <li><code>record_approval</code> (through the Boss's <code>ask_human</code>), once.</li>
+    <li><code>pay_rent</code> (lease 1): only after approval.</li>
+  </ul>
+
+  <h3>Actual</h3>
+  <div class="actual actual-filled">
+  <p><b>Real run, 2026-10-14.</b> Two runs of the Boss (<code>a02c51ba</code>, <code>702f7b8a</code>). Ticket 102 resolved. Cash before: $2,552.00.</p>
+  <p><b>Who the Boss called first:</b> Facilities Father (with Ama asked right after). As planned.</p>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>What really happened</th></tr>
+    <tr><td class="step">1</td><td>Boss → Father</td><td>Lease 1: $2,400 due 2026-09-02, 2 days left. As expected.</td></tr>
+    <tr><td class="step">2</td><td>Boss → Ama</td><td><b>Not in the plan.</b> The Boss also asked Ama directly for the cash balance.</td></tr>
+    <tr><td class="step">3</td><td>Father → Ama</td><td>Run 1: Father asked Ama to prepare the rent payment. As expected.</td></tr>
+    <tr><td class="step">4</td><td>Boss → Human</td><td>Run 1: pay $2,400.00 rent to Elm City Properties. The human approved; payment 3 was made. Cash $2,552.00 → $152.00.</td></tr>
+    <tr><td class="step">5</td><td>Boss → Jervis</td><td><b>Not in the plan.</b> The Boss had Jervis draft a note to the landlord in both runs (run 2 reads "rent for Lease 1 has already been paid" and ends with a "[Name]" placeholder).</td></tr>
+  </table>
+  <p><b>Not called:</b> Ina, as planned. <b>Differences:</b> the Boss → Ama call, and Jervis was called even though the plan said no (the requester is the landlord). Ticket 102 only resolved on the second run, which saw rent already paid; Ama's wording in that run ("cash is insufficient to cover rent by $2,248.00") is confusing because the rent was already paid, though he also said no payment was needed. No payment was refused or denied.</p>
+  <p><b>MCP tools really used:</b> <code>get_ticket</code>, <code>get_today</code> (Boss), <code>get_lease</code>, <code>get_today</code>, <code>list_payments</code> (Father), <code>get_cash</code>, <code>get_lease</code> (Ama), then through the approve route <code>record_approval</code> and <code>pay_rent</code>.</p>
+  <p class="muted" style="margin-top:14px">Your own notes:</p>
+  <textarea data-save="actual-102" placeholder="Anything else you noticed..."></textarea></div>
+</section>
+
+<!-- ============ 103 ============ -->
+<section class="tab" id="t103">
+  <h2>Ticket 103: Bulk hoodie discount</h2>
+  <span class="tag">price_override</span><span class="tag">open</span><span class="tag">created 2026-08-31 16:55</span>
+
+  <div class="card"><div class="facts">
+    <div><b>Requester</b>Yale AI Club</div>
+    <div><b>Request</b>20 hoodies, size M, bulk discount</div>
+    <div><b>Item</b>CC-HOOD-NAVY (Basic Hoodie Big Yale)</div>
+    <div><b>Unit cost / list price</b>$22.00 / $58.00 (margin $36.00 each)</div>
+    <div><b>Stock, size M</b>8 (Aisle A), so short 12</div>
+    <div><b>Hard floor</b>Never price below unit cost ($22.00)</div>
+  </div></div>
+
+  <h3>Expected</h3>
+
+  <div class="card pink">
+    <b>Boss calls Accounting Ama first.</b> The ticket is a price override, so the first thing the Boss needs is the margin room: list $58, unit cost $22, floor $22. Then Ina second, for the stock side. Father is not needed.
+  </div>
+
+  <h3>Expected delegations</h3>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>Why</th></tr>
+    <tr><td class="step">1</td><td>Boss → Ama</td><td>Margins: list price $58, unit cost $22, margin per hoodie $36, lowest safe price $22. The price must stay at or above unit cost; the Boss picks a price in that range (no discount percentage is set in the data).</td></tr>
+    <tr><td class="step">2</td><td>Boss → Ina</td><td>Stock check for CC-HOOD-NAVY size M against the 20 requested. Expected: 8 on hand, short by 12. Ina only reports; no order is proposed on the baseline path.</td></tr>
+    <tr><td class="step">3</td><td>Boss → Jervis</td><td>Yale AI Club needs a reply. Jervis drafts it from the Boss's facts: we can only promise the 8 we have in M unless we restock, and the price the Boss chose (not below $22). Internal cost is not mentioned.</td></tr>
+  </table>
+  <p class="not"><b>Baseline path: no restock, no human approval, no payment.</b> The ticket only asks for a bulk discount, not for more stock. Not expected: Father.</p>
+
+  <p><b>Optional, only if the Boss decides to fill the full 20:</b></p>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>Why</th></tr>
+    <tr><td class="step">?</td><td>Ina → Ama <span class="cond">(optional)</span></td><td>Ina proposes restocking the 12 missing hoodies and asks Ama whether the apparel vendor has an open unpaid invoice. Bulldog Print Co has open invoice 501 unless ticket 101 paid it first.</td></tr>
+    <tr><td class="step">?</td><td>Boss → Human, then Ama <span class="cond">(optional)</span></td><td>The human must approve the restock before Ama places it (12 × $22 = $264 at unit cost).</td></tr>
+  </table>
+
+  <h3>Expected MCP tools</h3>
+  <ul>
+    <li><code>get_ticket</code> (Boss or Ama/Ina): read ticket 103 for the SKU, size and quantity 20.</li>
+    <li><code>get_pricing</code> (Ama): list price $58 and unit cost $22 for CC-HOOD-NAVY.</li>
+    <li><code>get_stock</code> (Ina): CC-HOOD-NAVY size M.</li>
+  </ul>
+  <p class="not"><b>Optional, only on the full-20 restock path:</b> <code>list_vendors</code> (Ina), <code>get_vendor_invoices</code> and <code>get_cash</code> (Ama), <code>record_approval</code> (through the Boss's <code>ask_human</code>), and <code>order_stock</code>. No write tool is expected on the baseline path.</p>
+
+  <h3>Actual</h3>
+  <div class="actual actual-filled">
+  <p><b>Real run, 2026-10-14.</b> Four runs of the Boss (<code>45e610c0</code>, <code>e12ea42b</code>, <code>61dbbc13</code>, <code>11aa010e</code>). Ticket 103 resolved, with <b>no money spent</b>. Cash before and after: $152.00.</p>
+  <p><b>Who the Boss called first:</b> Accounting Ama, then Ina. As planned.</p>
+  <table>
+    <tr><th>#</th><th>From → To</th><th>What really happened</th></tr>
+    <tr><td class="step">1</td><td>Boss → Ama</td><td>Hoodie list price $58.00, unit cost $22.00, lowest safe price $22.00. As expected.</td></tr>
+    <tr><td class="step">2</td><td>Boss → Ina</td><td>CC-HOOD-NAVY size M: 8 on hand, short by 12; vendor Bulldog Print Co. As expected.</td></tr>
+    <tr><td class="step">3</td><td>Ina → Ama</td><td><b>Planned only as optional.</b> Ina proposed restocking the 12 and asked Ama whether the vendor had an open invoice (none by then).</td></tr>
+    <tr><td class="step">4</td><td>Boss → Human</td><td><b>Planned only as optional.</b> The Boss asked the human to approve a $264.00 restock (12 &times; $22.00). Run 1: the human approved, and the pay tool <b>refused</b> it: balance $152.00, payment $264.00, "balances never go negative". Run 2: asked again; that request was left unanswered and was lost when the backend was restarted. Run 3: asked again; the human <b>denied</b> it. Run 4: the denial was remembered, the Boss did not ask again, and the ticket resolved.</td></tr>
+    <tr><td class="step">5</td><td>Boss → Jervis</td><td>Drafted the reply to Yale AI Club: 8 hoodies available at $58 each, the other 12 not available, no restock date promised, no discount.</td></tr>
+  </table>
+  <p><b>Not called:</b> Father, as planned. <b>Differences:</b> the plan said the baseline path has no restock, no human approval and no payment. In reality the Boss went for the restock, which needed three human requests, one refusal for lack of cash and one denial before the ticket could resolve. The Boss's first final answer also reported <code>money_spent: 264.0</code>, which was wrong: nothing was spent.</p>
+  <p><b>MCP tools really used:</b> <code>get_ticket</code> (Boss, Ina), <code>get_pricing</code>, <code>get_vendor_invoices</code> (Ama), <code>get_stock</code>, <code>list_vendors</code> (Ina), then through the approve route <code>record_approval</code> and <code>order_stock</code> (refused, so no money moved).</p>
+  <p class="muted" style="margin-top:14px">Your own notes:</p>
+  <textarea data-save="actual-103" placeholder="Anything else you noticed..."></textarea></div>
+</section>
+
+<!-- ============ later tabs ============ -->
+<section class="tab" id="cash">
+  <h2>Cash: where the money went</h2>
+  <span class="tag">checking account</span><span class="tag">from the real run, 2026-10-14</span>
+  <p class="muted">Every figure comes from the <code>payments</code> and <code>cash_accounts</code> tables of <code>data/campus_customs_new.db</code> and from the MCP pay tools' answers.</p>
+
+  <table>
+    <tr><th>Step</th><th>Ticket</th><th>What happened and why</th><th>Change</th><th>Balance</th></tr>
+    <tr><td></td><td></td><td><b>Starting balance</b>, after resetting the database</td><td></td><td><b>$3,400.00</b></td></tr>
+    <tr><td>1</td><td>101</td><td>Paid vendor invoice 501 to Bulldog Print Co (payment 1, approved by the human). The vendor will not ship while it is unpaid.</td><td>&minus;$840.00</td><td>$2,560.00</td></tr>
+    <tr><td>2</td><td>101</td><td>Reprint order: 1 &times; CC-TEE-WHITE size S from vendor 1, at unit cost $8.00 (payment 2, approved by the human).</td><td>&minus;$8.00</td><td>$2,552.00</td></tr>
+    <tr><td>3</td><td>102</td><td>Paid rent for lease 1 (Chapel Street shop) to Elm City Properties (payment 3, approved by the human).</td><td>&minus;$2,400.00</td><td>$152.00</td></tr>
+    <tr><td>4</td><td>103</td><td><b>No money moved.</b> A restock of 12 &times; CC-HOOD-NAVY at $22.00 = $264.00 was proposed. The human approved it once and the pay tool <b>refused</b> it: balance $152.00 is less than $264.00 and balances never go negative. Later the same request was <b>denied</b> by the human.</td><td>$0.00</td><td>$152.00</td></tr>
+    <tr><td></td><td></td><td><b>Ending balance</b>: matches <code>cash_accounts</code> (checking = 152.0, as of 2026-08-31)</td><td></td><td><b>$152.00</b></td></tr>
+  </table>
+
+  <h3>Per ticket</h3>
+  <table>
+    <tr><th>Ticket</th><th>Net change in cash</th><th>Reason</th></tr>
+    <tr><td>101</td><td>&minus;$848.00</td><td>invoice 501 ($840.00) + tee order ($8.00)</td></tr>
+    <tr><td>102</td><td>&minus;$2,400.00</td><td>rent</td></tr>
+    <tr><td>103</td><td>$0.00</td><td>restock refused for lack of cash, then denied</td></tr>
+    <tr><td><b>Total</b></td><td><b>&minus;$3,248.00</b></td><td>$3,400.00 &minus; $3,248.00 = <b>$152.00</b></td></tr>
+  </table>
+
+  <h3>Check</h3>
+  <ul>
+    <li>The <code>payments</code> table has exactly three rows: invoice 501 for $840.00, a purchase for $8.00 and rent for $2,400.00, all approved by "human at the Table". $840 + $8 + $2,400 = $3,248.</li>
+    <li>Invoice 501 now has status <code>paid</code>. Tickets 101, 102 and 103 are all <code>resolved</code>.</li>
+    <li>The refused $264.00 purchase is not in <code>payments</code> and did not change the balance.</li>
+  </ul>
+</section>
+
+<section class="tab" id="reflection">
+  <h2>Reflection</h2>
+  <span class="tag">your answers</span><span class="tag">evidence from the real run, 2026-10-14</span>
+  <p class="muted">Each answer is yours. Under it, <b>Evidence from this app</b> points at the Expected and Actual sections on the ticket tabs, the Cash tab, and <code>output/audit_trail.json</code>. Where the evidence disagrees with a sentence, it says so.</p>
+
+  <h3>1. How would you evaluate the performance of the agents on each ticket and why?</h3>
+  <div class="answer">I like how it did!! So good, I'm proud of my bots. On ticket 101 the Boss called Ina first for CC-TEE-WHITE size S (0 on hand), invoice 501 got paid ($840) then the $8 tee order went through, and Father stayed out of it like he should. On 102 Father got the lease right ($2,400 due 2026-09-02) and rent paid, cash 2552 &rarr; 152. On 103 the price floor ($22) and the 8-of-20 stock gap showed up correctly. I didn't like Jervis's original response, so annoyingly I had to write that part myself, but look at the little guys, they look so cute on the board.</div>
+  <div class="evidence"><b>Evidence from this app</b>
+    <ul>
+      <li><b>101 (strong):</b> Ina's <code>get_stock</code> returned 0 on hand for size S, short by 1. Ama's tools showed invoice 501 open at $840 in run 1, then paid in run 2. Payments 1 ($840.00) and 2 ($8.00) were made after human approval; cash $3,400.00 &rarr; $2,560.00 &rarr; $2,552.00 (Cash tab). Father was never called.</li>
+      <li><b>102 (strong):</b> Father's <code>get_lease</code> gave $2,400, due 2026-09-02, 2 days left. Payment 3 took cash $2,552.00 &rarr; $152.00. Small blemishes: Jervis was called for a landlord note (not in Expected), and in run 2 Ama's wording said cash was short by $2,248.00 even though the rent was already paid.</li>
+      <li><b>103 (weakest):</b> Ama's <code>get_pricing</code> gave list $58, unit cost $22; Ina's <code>get_stock</code> gave 8 on hand in size M, short by 12. But the Boss then asked the human to approve a $264.00 restock three times while cash was $152.00. One approval was refused by the pay tool, one was denied, and it took four runs to resolve. Its first final answer also said <code>money_spent: 264.0</code> when nothing was spent.</li>
+      <li><b>Jervis:</b> his first 101 reply included the 5-day lead time and "awaiting approval"; you then wrote the short out-of-stock wording into <code>customer_service.md</code>, and his 103 reply to Yale AI Club afterward was shorter. The agents are drawn on the board (see <code>output/resolved_board.html</code>).</li>
+    </ul>
+  </div>
+
+  <h3>2. For each ticket, how did Actual compare to the Expected plan you wrote earlier?</h3>
+  <div class="answer">The agents under the Boss sometimes didn't know how to talk to each other. On 101 and 102 the plan said Ina &rarr; Ama or Father &rarr; Ama, but in the Actual runs Ina and Ama mostly deferred upward, so the Boss had to ask Ama directly in parallel (those Boss &rarr; Ama calls were not in Expected). On 101 the rest matched: pay invoice 501 then order the tee, Father not called. On 102 the plan said no Jervis (requester is the landlord), but the Boss still called him anyway. So Expected was mostly right on who owns what; Actual showed the Boss doing extra solo asks because the specialists weren't chatting sideways as much.</div>
+  <div class="evidence"><b>Evidence from this app</b>
+    <ul>
+      <li><b>Boss &rarr; Ama extras are confirmed:</b> on 101 (runs <code>63dd6d4f</code>, <code>7951661b</code>) and 102 (<code>a02c51ba</code>, <code>702f7b8a</code>) the Boss asked Ama directly, which Expected did not list.</li>
+      <li><b>Check on "didn't chat sideways":</b> the sideways calls did happen. Ina &rarr; Ama was made in all six of Ina's runs (both 101 runs and all four 103 runs), and Father &rarr; Ama was made in 102 run 1 (not in run 2, when rent was already paid). So the specialists did talk; the Boss simply also asked Ama himself, in parallel.</li>
+      <li><b>Matched Expected:</b> first call (Ina on 101, Father on 102, Ama on 103), two separate human approvals on 101, Father not called on 101 and 103, and the pay tools (<code>pay_invoice</code>, <code>order_stock</code>, <code>pay_rent</code>) running only after a human approved.</li>
+      <li><b>Jervis on 102:</b> Expected said not called; he was called in both runs (run 2's note to Elm City Properties ends with a "[Name]" placeholder).</li>
+      <li><b>103 diverged most:</b> Expected's baseline had no restock, no approval and no payment; Actual had the Boss request a $264.00 restock (12 &times; $22.00), one approval refused for lack of cash, one denial, and no money spent.</li>
+      <li><b>Who made the payments:</b> Expected had Ama paying. In Actual the backend's approve route called the pay tools after the human clicked Approve; Ama never did.</li>
+    </ul>
+  </div>
+
+  <h3>3. What would have been simpler as one agent with tools, and why?</h3>
+  <div class="answer">With one agent it would've been easier and cost fewer tokens. Accounting Ama exists because no one else can read cash (get_cash, pay_invoice, pay_rent, order_stock), so every money question burns extra tokens bouncing through him. But that split is also safer because when cash went 3400 &rarr; 2560 &rarr; 2552 on 101 and then 2552 &rarr; 152 on 102, I can point at Ama (and the backend approve route that actually called the pay tools) instead of blaming big AI for ruining my career.</div>
+  <div class="evidence"><b>Evidence from this app</b>
+    <ul>
+      <li><b>Simpler as one agent:</b> 102 run 1 took four delegations (Boss &rarr; Father, Boss &rarr; Ama, Father &rarr; Ama, Boss &rarr; Jervis) plus a human approval for one $2,400.00 rent payment; the same facts come from <code>get_lease</code>, <code>get_cash</code> and <code>list_payments</code>. The whole run used 8 Boss runs for three tickets. (Token counts are not recorded in the audit trail, so the token saving is a reasonable expectation, not a measured number.)</li>
+      <li><b>Safer split:</b> only Ama has <code>get_cash</code> and the pay tools in his allow-list, and they refuse without a recorded human approval. On 103 the pay tool refused the $264.00 restock ("balance is 152.00, payment is 264.00"), and the balance stayed $152.00.</li>
+      <li><b>Traceable money:</b> the <code>payments</code> table has three rows (invoice 501 $840.00, purchase $8.00, rent $2,400.00), each approved by "human at the Table"; they sum to $3,248.00, and $3,400.00 &minus; $3,248.00 = $152.00 (Cash tab).</li>
+    </ul>
+  </div>
+
+  <h3>4. Three new problems this agent team could solve with the tools you built</h3>
+  <div class="answer">
+    <ol>
+      <li>Rush of orders during orientation: same path as 101 and 103: <code>get_ticket</code>, <code>get_stock</code>, <code>get_pricing</code>, draft a reply with Jervis, human approve if anything needs ordering.</li>
+      <li>Shop closure from rain, flood or earthquake: tickets come in like the open ones on the board, agents read them with <code>get_ticket</code> and reply with what stock is still on the shelves.</li>
+      <li>Rent payment apps go bust or mail isn't working: the landlord sends a rent_notice like ticket 102, Father pulls the lease, Ama checks cash, human approves, <code>pay_rent</code> runs.</li>
+    </ol>
+  </div>
+  <div class="evidence"><b>Evidence from this app</b>
+    <ul>
+      <li><b>1:</b> Ticket 101 and 103 already ran this path: <code>get_ticket</code> and <code>get_stock</code> (Ina), <code>get_pricing</code> (Ama), a Jervis draft, and a human approval before the $8.00 order.</li>
+      <li><b>2:</b> <code>get_stock</code> answers per SKU and size (for example CC-TEE-WHITE size S = 0, CC-HOOD-NAVY size M = 8), and Jervis already drafts replies. One catch: Jervis's out-of-stock wording is fixed, so a closure notice would need its own wording.</li>
+      <li><b>3:</b> Ticket 102 ran exactly this: Father's <code>get_lease</code> ($2,400, due 2026-09-02), Ama's <code>get_cash</code> ($2,552.00), human approval, <code>pay_rent</code> (payment 3, cash to $152.00).</li>
+    </ul>
+  </div>
+
+  <h3>5. Three new problems this team could not solve, and what you'd need</h3>
+  <div class="answer">
+    <ol>
+      <li>Directing where to place stock at the supplier: right now <code>order_stock</code> only pays and notes lead_days. We don't tell the vendor a warehouse or storage unit. Would need a tool that sends the put-away location to the vendor, and maybe a receiving agent that owns it.</li>
+      <li>Updating customers when a shipment will actually arrive: we have lead_days from <code>list_vendors</code> but no email or SMS tool. Would need a <code>notify_customer</code> tool and Jervis (or a new agent) allowed to send it, instead of the Boss sending it out each time.</li>
+      <li>Auto-updating inventory spreadsheets: inventory only moves when someone runs tools by hand. Would need a tool that watches a folder for a new spreadsheet and writes into the inventory table.</li>
+    </ol>
+  </div>
+  <div class="evidence"><b>Evidence from this app</b>
+    <ul>
+      <li><b>1:</b> The 101 order (payment 2, $8.00 for 1 &times; CC-TEE-WHITE size S, vendor 1) returned only <code>ok</code>, the amount, the new balance and <code>lead_days: 5</code>. Nothing tells Bulldog Print Co where to put the stock.</li>
+      <li><b>2:</b> The 5-day lead time for Bulldog Print Co is in the vendors table, but no tool can send a message. Today the safety rules also forbid it (no real emails or calls; everything stays on the board), so this would need a deliberate exception, plus the rule that Jervis never shares internal details.</li>
+      <li><b>3:</b> No MCP tool writes to <code>inventory</code>: <code>order_stock</code> pays but leaves the table unchanged (size S stayed at 0 after the $8.00 order), and size M stayed at 8 on 103.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // Tab switching
+  const buttons = document.querySelectorAll('#tabs button');
+  const tabs = document.querySelectorAll('section.tab');
+  function show(id) {
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+    tabs.forEach(t => t.classList.toggle('active', t.id === id));
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+  }
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.tab)));
+  if (location.hash && document.getElementById(location.hash.slice(1))) show(location.hash.slice(1));
+
+  // Actual boxes remember what you type (stored in this browser only)
+  document.querySelectorAll('textarea[data-save]').forEach(box => {
+    const key = 'desk_tickets_' + box.dataset.save;
+    try { box.value = localStorage.getItem(key) || ''; } catch (e) {}
+    box.addEventListener('input', () => { try { localStorage.setItem(key, box.value); } catch (e) {} });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+fastmcp==4.1.0
+fastmcp-slim==4.1.0
